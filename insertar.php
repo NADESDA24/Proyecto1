@@ -2,10 +2,14 @@
 
 
 $tarea=$_POST['tarea'];
+$usuario = $_POST['usuario'];
+session_start();
+$_SESSION['usuario']=$usuario;
 
 
 include 'bd.php';
-$sql="INSERT INTO t_tareas (tarea,1)VALUES('$tarea','1')";
+
+$sql="INSERT INTO t_tarea (tarea, usuario)VALUES('$tarea','$usuario')";
 
 $result=mysqli_query($conexion, $sql);
 

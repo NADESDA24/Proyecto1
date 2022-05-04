@@ -1,6 +1,5 @@
 <?php
  include 'bd.php';
- include 'validar.php';
 
 $ID = "SELECT ID FROM usuarios";
  $sql = "SELECT ID_tarea, tarea FROM t_tarea WHERE ID = $ID";
@@ -13,17 +12,19 @@ $ID = "SELECT ID FROM usuarios";
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+     
     <title>Lista de Tareas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./Estilos2.css">
   </head>
   <body>
-    
-    <h2 th:text="'Listado de tareas de ' +  $_SESSION['usuario']"></h2>
+    <h2 th:text="'Listado de tareas de ' + ${usuario.nombre}"></h2>
+    <h1 class="text-center py-4 my-4">Lista de Tareas</h1>
 
     <div class="w-50 m-auto">
     <form action="insertar.php" method="post">
         <div class="form-group">
-            <label for="title">Tarea</label>
+            <label for="title">Ingrese una tarea nueva</label>
             <input class="form-control" type="text" name="tarea" id="tarea" placeholder="Ingrese tarea" Required>
 
         </div><br>
@@ -45,18 +46,18 @@ $ID = "SELECT ID FROM usuarios";
   </thead>
   <tbody>
   <?php
+            include 'bd.php';
+            
+            //if("SELECT ID, Tareas FROM t_usuarios, t_tarea" == true)
+           
 
-                include 'bd.php';
-
-
-                    $_SESSION['ID']=$ID;
-
-            $sql = "SELECT * FROM t_tarea WHERE ID = $ID ";
+            $sql = "SELECT * FROM t_tarea";
             $result = mysqli_query($conexion,$sql);
             if($result){
                 while($row = mysqli_fetch_assoc($result)){
                     $ID_tarea = $row['ID_tarea'];
                     $tarea = $row['tarea'];
+                
                  ?>
                 <tr>
                 <td><?php echo $ID_tarea ?></td>
@@ -69,6 +70,7 @@ $ID = "SELECT ID FROM usuarios";
                 <?php
               }
         }
+    
     ?>
    
   </tbody>
