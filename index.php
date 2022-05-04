@@ -12,8 +12,9 @@
 			<p> Usuarios <input type="text" placeholder="Ingrese su nombre" name = "usuario" ></p>
 			<p> Contraseña <input type="password" placeholder="Ingrese su contraseña" name = "contraseña" ></p>
 			<input type = "submit" value="Ingresar">
-			<input  type = "submit" value="Registrarse">
+			<a  href="registrarse.php"> Registrarse </a>
 		</form>
+		
 	</div>
 </body>
 </html>
