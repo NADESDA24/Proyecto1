@@ -22,22 +22,22 @@ addBtn.addEventListener("click", (e) => {
   }
 });
 
-function addDeleteBtn() {
-  const deleteBtn = document.createElement("button");
+//function addDeleteBtn() {
+ // const deleteBtn = document.createElement("button");
 
-  deleteBtn.textContent = "Eliminar";
-  deleteBtn.className = "btn-delete";
+ // deleteBtn.textContent = "Eliminar";
+ // deleteBtn.className = "btn-delete";
 
-  deleteBtn.addEventListener("click", (e) => {
-    const item = e.target.parentElement;
-    ul.removeChild(item);
+  //deleteBtn.addEventListener("click", (e) => {
+  //  const item = e.target.parentElement;
+  //  ul.removeChild(item);
 
-    const items = document.querySelectorAll("li");
+  //  const items = document.querySelectorAll("li");
 
-    if (items.length === 0) {
-      empty.style.display = "block";
-    }
-  });
+ //   if (items.length === 0) {
+    //  empty.style.display = "block";
+   // }
+ // });
 
-  return deleteBtn;
-}
+ // return deleteBtn;
+//}

@@ -8,6 +8,17 @@
     <link rel="stylesheet" href="./estilos.css">
 </head>
 <body>
+    <?php
+    include 'bd.php';
+    $sql = "SELECT * FROM t_tareas";
+    $result = mysqli_query($conexion,$sql);
+    if($result){
+        while($row = mysqli_fetch_assoc($result)){
+            $ID = $row['ID'];
+            $tarea = $row['tarea'];
+        }
+    }
+    ?>
     <div class="container">
         <h1>Lista de Tareas</h1>
         <div class="search">
