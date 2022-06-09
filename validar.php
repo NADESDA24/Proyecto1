@@ -1,9 +1,9 @@
+<?php session_start(); ?>
 <?php
 
 $usuario = $_POST['usuario'];
 $contraseña = $_POST['contraseña'];
-session_start();
-$_SESSION['usuario']=$usuario;
+
 
 $conexion = mysqli_connect("localhost","root","","bd_todo");
 include('bd.php');
@@ -11,11 +11,13 @@ include('bd.php');
 $consulta = "SELECT * FROM t_usuarios where usuario ='$usuario' and contraseña = '$contraseña'";
 $resultado = mysqli_query($conexion,$consulta);
 
-$filas = mysqli_num_rows($resultado);
-
-if($filas)
-{
-    header("location: tareas.php");
+$filas = mysqli_fetch_assoc($resultado);
+        
+        if(is_array($filas) && !empty($filas)) {
+    $validuser = $filas['usuario'];
+    $_SESSION['valid'] = $validuser;
+    $_SESSION['ID'] = $filas['ID'];
+    
 }else{
     ?>
     <?php
@@ -24,6 +26,10 @@ if($filas)
     <h1 class="bad"> ERROR EN LA AUTENTIFICACION</h1>
     <?php
 }
+
+if(isset($_SESSION['valid'])) {
+           header("location: tareas.php");      
+    }
 
 mysqli_free_result($resultado);
 mysqli_close($conexion);

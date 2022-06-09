@@ -1,11 +1,10 @@
+<?php session_start(); ?>
+
 <?php
- include 'bd.php';
-
-$ID = "SELECT ID FROM usuarios";
- $sql = "SELECT ID_tarea, tarea FROM t_tarea WHERE ID = $ID";
-
+if(!isset($_SESSION['valid'])) {
+    header('Location: index.php');
+}
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -25,7 +24,7 @@ $ID = "SELECT ID FROM usuarios";
     <form action="insertar.php" method="post">
         <div class="form-group">
             <label for="title">Ingrese una tarea nueva</label>
-            <input class="form-control" type="text" name="tarea" id="tarea" placeholder="Ingrese tarea" Required>
+            <input class="form-control"  type="text" name="tarea" id="tarea" placeholder="Ingrese tarea" Required>
 
         </div><br>
         <button class="btn btn-success">Agregar Tarea</button>
@@ -45,13 +44,11 @@ $ID = "SELECT ID FROM usuarios";
     </tr>
   </thead>
   <tbody>
+
   <?php
             include 'bd.php';
-            
-            //if("SELECT ID, Tareas FROM t_usuarios, t_tarea" == true)
            
-
-            $sql = "SELECT * FROM t_tarea";
+            $sql = "SELECT * FROM t_tarea WHERE usuarios_id=".$_SESSION['ID'];
             $result = mysqli_query($conexion,$sql);
             if($result){
                 while($row = mysqli_fetch_assoc($result)){

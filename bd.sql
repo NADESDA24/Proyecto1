@@ -14,6 +14,9 @@ CREATE TABLE `t_tarea`
 (
      `ID_tarea` INT NOT NULL AUTO_INCREMENT ,
       `tarea` VARCHAR(500) NOT NULL ,
-       `usuario` VARCHAR(100) NOT NULL 
-       , PRIMARY KEY (`ID_tarea`)
+       `usuarios_id` VARCHAR(100) NOT NULL 
+       , PRIMARY KEY (`ID_tarea`),
+    CONSTRAINT FK_products_1
+    FOREIGN KEY (usuarios_id) REFERENCES login(ID)
+    ON UPDATE CASCADE ON DELETE CASCADE
        ) ENGINE = InnoDB;

@@ -1,23 +1,49 @@
+<?php session_start(); ?>
+
 <?php
-
-
-$tarea=$_POST['tarea'];
-$usuario = $_POST['usuario'];
-session_start();
-$_SESSION['usuario']=$usuario;
-
-
-include 'bd.php';
-
-$sql="INSERT INTO t_tarea (tarea, usuario)VALUES('$tarea','$usuario')";
-
-$result=mysqli_query($conexion, $sql);
-
-if($result){
-    header("location: ./tareas.php");
+if(!isset($_SESSION['valid'])) {
+    header('Location: index.php');
 }
-else{
-    // echo "No se realizo conexcion";
-}
+?>
+
+<?php
+include('bd.php');
+
+
+    
+		$_POST['tarea']=$tarea;
+    $usuarios_id = $_SESSION['ID'];
+
+
+        $sql =  "INSERT INTO t_tarea (tarea, usuarios_id) VALUES('$tarea', '$usuarios_id')";
+
+      $result=mysqli_query($conexion,$sql);
+    if($result){
+        header("location: ./tareas.php");
+    }
+        else{
+        echo "Error";
+    }
+      
+    
+
+
+   // 
+
+
+
+
+
+//$session_id = session_id();
+//$_SESSION['ID'] = $loginId;
+ //session_start();
+//$loginId = $_SESSION['id'];
+
+
+//if(isset($_POST['tarea'])) {	
+
+
+
+//}
 
 ?>
